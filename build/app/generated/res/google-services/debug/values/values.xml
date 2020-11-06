@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">319326377499-i41qq95j7e4jm19q2t9tm3jqnr89ce18.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://sendrtest.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">319326377499</string>
+    <string name="google_api_key" translatable="false">AIzaSyCa1IzuOkvQFvCIdAOv5o0yASQfWZeMgAU</string>
+    <string name="google_app_id" translatable="false">1:319326377499:android:2b5ce1a05afbe13c108abe</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCa1IzuOkvQFvCIdAOv5o0yASQfWZeMgAU</string>
+    <string name="google_storage_bucket" translatable="false">sendrtest.appspot.com</string>
+    <string name="project_id" translatable="false">sendrtest</string>
+</resources>
