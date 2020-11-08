@@ -1,7 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first/modal/user.dart';
+import 'package:flutter/material.dart';
 class AuthMethods{
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  Stream<String> get authStateChanges => _auth.authStateChanges().map(
+            (User user) => user?.uid,
+      );
+
+  String getCurrentUID() {
+    return _auth.currentUser.uid;
+  }
+  Future getCurrentUser() async {
+    return await _auth.currentUser;
+  }
+
+  Future updateUserInfo(String DisplayName, String username, String Email, String Bio) async{
+    var firebaseUser =  FirebaseAuth.instance.currentUser;
+    firestoreInstance.collection("users").doc(firebaseUser.uid).update({
+      "Display name": DisplayName,
+      "bio": Bio,
+      "email": Email,
+      "username": username,
+    });
+  }
+
+  Future newUserInfo(String DisplayName, String username, String Email, String Bio, String UID) async{
+    firestoreInstance.collection("users").add({
+      "Display name": DisplayName,
+      "bio": Bio,
+      "email": Email,
+      "username": username,
+      "uid": UID,
+    });
+  }
+
   CustomUser _userFromFireBaseUser(User user){
     return user != null ? CustomUser(userId: user.uid) : null;
   }
@@ -43,5 +78,4 @@ class AuthMethods{
     }catch(e){
     }
   }
-
 }

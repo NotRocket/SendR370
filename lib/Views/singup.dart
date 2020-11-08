@@ -3,6 +3,8 @@ import 'package:first/Views/signin.dart';
 import 'package:first/Widgets/widget.dart';
 import 'package:first/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:first/Views/editProfile.dart';
+
 class SignUp extends StatefulWidget {
   @override
 
@@ -28,9 +30,11 @@ class _SignUpState extends State<SignUp> {
       authMethods.signUpWithEmailAndPassword(emailTextEditingController.text,
           passwordTextEditingController.text).then((val){
             print("$val.uid");
+            authMethods.newUserInfo(null, userNameTextEditingController.text, emailTextEditingController.text, null,AuthMethods().getCurrentUID());
             Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context) => ChatRoom()
+              builder: (context) => EditProfile()
             ));
+
       });
     }
   }

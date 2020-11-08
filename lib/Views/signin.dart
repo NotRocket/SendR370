@@ -1,3 +1,4 @@
+import 'package:first/Views/home.dart';
 import 'package:first/Views/singup.dart';
 import 'package:first/Widgets/widget.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +6,11 @@ import 'package:first/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first/services/database.dart';
 import 'package:first/Views/chatRoomsScreen.dart';
+import 'package:provider/provider.dart';
 
 
 class SignIn extends StatefulWidget{
   @override
-
   _SignInState createState() => _SignInState();
 }
 
@@ -17,28 +18,20 @@ class _SignInState extends State<SignIn> {
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
 
-  AuthMethods authMethods = new AuthMethods();
-
+  AuthMethods authMethods;
   final formKey = GlobalKey<FormState>();
-
   bool isLoading = false;
-
   signIn() async {
     if (formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
       });
 
-      await authMethods
-          .signInWithEmailAndPassword(
-          emailEditingController.text, passwordEditingController.text)
-          .then((result) async {
+      await authMethods.signInWithEmailAndPassword(emailEditingController.text, passwordEditingController.text).then((result) async {
         if (result != null)  {
-          QuerySnapshot userInfoSnapshot =
-          await DatabaseMethods().getUserInfo(emailEditingController.text);
-
+          QuerySnapshot userInfoSnapshot = await DatabaseMethods().getUserInfo(emailEditingController.text);
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+              context, MaterialPageRoute(builder: (context) => Home()));
         } else {
           setState(() {
             isLoading = false;
@@ -49,9 +42,16 @@ class _SignInState extends State<SignIn> {
     }
   }
 
+  @override
+  void initState()
+  {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    authMethods = Provider.of<AuthMethods>(context);
     return Scaffold(
       appBar: appBarMain(context),
 
@@ -72,11 +72,12 @@ class _SignInState extends State<SignIn> {
                        TextField(
                          controller:  emailEditingController,
                          style: simpleTextStyle(),
-                         decoration: textFieldInputDecoration('username'),
+                         decoration: textFieldInputDecoration('Email Address'),
                          ),
                        TextField(
                          controller: passwordEditingController,
                          style: simpleTextStyle(),
+                         obscureText: true,
                          decoration: textFieldInputDecoration('password'),
                        ),
                        SizedBox(height: 8,),
