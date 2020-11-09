@@ -33,19 +33,11 @@ class _editProfileState extends State<EditProfile> {
     ));
 
   }
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-
-            backgroundColor: Theme
-                .of(context)
-                .scaffoldBackgroundColor,
-
+            backgroundColor: Colors.brown,
             elevation: 1,
             leading: IconButton(
               icon: Icon(
@@ -134,6 +126,8 @@ class _editProfileState extends State<EditProfile> {
                     ],
                   ),
                 ),
+
+
                 SizedBox(
                   height: 50,
                 ),
@@ -164,6 +158,7 @@ class _editProfileState extends State<EditProfile> {
         )
     );
   }
+
 
   Widget buildTextField( String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(

@@ -133,6 +133,7 @@ class _SignInState extends State<SignIn> {
                                  onPressed: () {
                                    Navigator.pushReplacement(context,
                                    MaterialPageRoute(builder: (context) => SignUp()));
+
                                    // Navigate back to first route when tapped.
                                  },
                                  child: Text('Register Now',style: TextStyle(

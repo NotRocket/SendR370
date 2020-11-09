@@ -55,6 +55,7 @@ class _ProfileViewState extends State<ProfileView> {
             Container(
               padding: const EdgeInsets.all(8.0),
               child: Text("Display name: ${snapshot.data["Display name"]}",style: simpleTextStyle(),),
+              color: Colors.blueGrey,
             ),
             Divider(
               thickness: 2,
@@ -62,7 +63,9 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Username: ${snapshot.data["username"]}",style: simpleTextStyle(),),
+
+              child: Text("Birthday: ${snapshot.data["username"]}",style:
+              simpleTextStyle(),),
             ),
             Divider(
               thickness: 2,
@@ -78,7 +81,8 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Email: ${snapshot.data["email"]}",style: simpleTextStyle(),),
+              child: Text("Phone Number: ${snapshot.data["email"]}",style:
+              simpleTextStyle(),),
             ),
             Divider(
               thickness: 2,
@@ -101,6 +105,11 @@ class _ProfileViewState extends State<ProfileView> {
                       image: ExactAssetImage('assets/images/GoodLuckBrian.jpeg'),
                     )
                 )),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Tap To Edit Profile Picture",style: simpleTextStyle
+                (),),
+            ),
 
 
 
