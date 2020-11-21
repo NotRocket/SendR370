@@ -1,10 +1,12 @@
 import 'package:first/Views/chatRoomsScreen.dart';
 import 'package:first/Views/signin.dart';
 import 'package:first/Widgets/widget.dart';
+import 'package:first/helper/helperfunctions.dart';
 import 'package:first/services/auth.dart';
 import 'package:first/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:first/Views/editProfile.dart';
+import 'package:first/helper/helperfunctions.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -14,7 +16,14 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoading = false;
+
+  HelperFunctions helperFunctions = new HelperFunctions();
+  
   AuthMethods authMethods = new AuthMethods();
+
+  DatabaseMethods databaseMethods = new DatabaseMethods();
+
+
   final formKey = GlobalKey<FormState>();
   TextEditingController userNameTextEditingController = new
   TextEditingController();
@@ -25,6 +34,19 @@ class _SignUpState extends State<SignUp> {
 
   signMeUp(){
     if(formKey.currentState.validate()){
+
+      Map<String,String> userDataMap = {
+        "userName" : userNameTextEditingController.text,
+        "userEmail" : emailTextEditingController.text,
+      };
+      HelperFunctions.saveUserEmailSharedPrefrence
+        (emailTextEditingController.text);
+      HelperFunctions.saveUserNameSharedPreference
+        (userNameTextEditingController.text);
+
+
+      databaseMethods.addUserInfo(userDataMap);
+
       setState(() {
           isLoading = true;
       });

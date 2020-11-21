@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:first/Views/home.dart';
 import 'package:first/services/auth.dart';
 import 'package:provider/provider.dart';
+import 'package:first/helper/helperfunctions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() async{
@@ -14,7 +16,27 @@ void main() async{
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool userIsLoggedIn = false;
+
+  @override
+  void initState(){
+    getLoggedInState();
+    super.initState();
+  }
+  getLoggedInState() async{
+    await HelperFunctions.getUserLoggedInSharedPrefrence().then((value){
+      userIsLoggedIn = value;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -28,11 +50,23 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.brown,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home:  SignIn()
+          home:  userIsLoggedIn ? Home() :
+          SignIn(),
       )
       );
   }
 }
+// class IamBlank extends StatefulWidget {
+//   @override
+//   _IamBlankState createState() => _IamBlankState();
+// }
+// class _IamBlankState extends State<IamBlank> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+
 /*
 
 class HomeController extends StatelessWidget {

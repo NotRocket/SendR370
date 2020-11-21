@@ -1,5 +1,4 @@
 import 'package:first/Views/feedView.dart';
-import 'package:first/Views/messageView.dart';
 import 'package:first/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:first/Views/chatRoomsScreen.dart';
@@ -18,7 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    messageView(),
+    ChatRoom(),
     feedView(),
     ProfileView(),
 

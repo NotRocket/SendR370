@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first/services/database.dart';
 import 'package:first/Views/chatRoomsScreen.dart';
 import 'package:provider/provider.dart';
+import 'package:first/helper/helperfunctions.dart';
 
 
 class SignIn extends StatefulWidget{
@@ -15,18 +16,42 @@ class SignIn extends StatefulWidget{
 }
 
 class _SignInState extends State<SignIn> {
+  HelperFunctions helperFunctions = new HelperFunctions();
+
+  DatabaseMethods databaseMethods = new DatabaseMethods();
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
-
-  AuthMethods authMethods;
   final formKey = GlobalKey<FormState>();
+  AuthMethods authMethods = new AuthMethods();
   bool isLoading = false;
+
+  QuerySnapshot snapshotUserInfo;
+
   signIn() async {
     if (formKey.currentState.validate()) {
+
+      HelperFunctions.saveUserEmailSharedPrefrence(emailEditingController.text);
+      databaseMethods.getUserByUserEmail(emailEditingController.text)
+          .then((val){
+        snapshotUserInfo = val;
+        HelperFunctions.saveUserNameSharedPreference(snapshotUserInfo
+            .docs[0].data()["username"]);
+        print("${snapshotUserInfo
+            .docs[0].data()["username"]} this is not good ");
+      });
+
       setState(() {
         isLoading = true;
       });
-
+      authMethods.signInWithEmailAndPassword(emailEditingController.text,
+          passwordEditingController.text)
+      .then((val) {
+        if (val != null) {
+          HelperFunctions.saveUserLoggedInSharedPrefrence(true);
+          Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context) => Home()));
+        }
+      });
       await authMethods.signInWithEmailAndPassword(emailEditingController.text, passwordEditingController.text).then((result) async {
         if (result != null)  {
           QuerySnapshot userInfoSnapshot = await DatabaseMethods().getUserInfo(emailEditingController.text);
@@ -69,12 +94,21 @@ class _SignInState extends State<SignIn> {
                    key: formKey,
                    child: Column(
                      children: [
-                       TextField(
+                       TextFormField(
+                         validator: (val){
+                           return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9"
+                           r".!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                               .hasMatch(val) ? null : "Enter valid email";
+                         },
                          controller:  emailEditingController,
                          style: simpleTextStyle(),
                          decoration: textFieldInputDecoration('Email Address'),
                          ),
-                       TextField(
+                       TextFormField(
+                         validator: (val){
+                           return val.length > 6 ? null : "Please provide 6+ "
+                               "character password";
+                         },
                          controller: passwordEditingController,
                          style: simpleTextStyle(),
                          obscureText: true,
