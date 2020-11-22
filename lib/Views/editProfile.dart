@@ -134,12 +134,12 @@ class _editProfileState extends State<EditProfile> {
                 TextField(
                   controller: usernameEditingController,
                   style: simpleTextStyle(),
-                  decoration: textFieldInputDecoration("Enter Birthday"),
+                  decoration: textFieldInputDecoration("username"),
                 ),
                 TextField(
                   controller: emailEditingController,
                   style: simpleTextStyle(),
-                  decoration: textFieldInputDecoration('Phone Number'),
+                  decoration: textFieldInputDecoration('email'),
                 ),
                   TextField(
                     controller: bioEditingController,

@@ -16,8 +16,6 @@ class DatabaseMethods {
         .get();
   }
 
-
-
   Future<void> addUserInfo(userData) async {
     FirebaseFirestore.instance.collection("users").add(userData).catchError(
             (e) {
@@ -40,5 +38,29 @@ class DatabaseMethods {
         .catchError((e) {
       print(e.toString());
     });
+  }
+
+
+  addConversationMessages(String chatRoomId, messageMap){
+    FirebaseFirestore.instance.collection("ChatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .add(messageMap).catchError((e){print(e.toString());});
+  }
+
+  getConversationMessages(String chatRoomId) async {
+    return await FirebaseFirestore.instance.collection("ChatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+    .orderBy("time", descending : false)
+        .snapshots();
+  }
+
+
+  getChatRooms(String userName) async{
+    return await FirebaseFirestore.instance
+        .collection("ChatRoom")
+        .where("users", arrayContains: userName)
+        .snapshots();
   }
 }

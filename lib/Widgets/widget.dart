@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget appBarMain(BuildContext context) {
   return AppBar(
-    title: Image.asset('assets/images/SendR.png', height: 50, width: 200,
+    title: Image.asset('assets/images/SendR.png', height: 0, width: 200,
         fit: BoxFit.fitHeight),
   );
 }

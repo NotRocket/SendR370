@@ -35,17 +35,17 @@ class _SignUpState extends State<SignUp> {
   signMeUp(){
     if(formKey.currentState.validate()){
 
-      Map<String,String> userDataMap = {
-        "userName" : userNameTextEditingController.text,
-        "userEmail" : emailTextEditingController.text,
-      };
+      // Map<String,String> userDataMap = {
+      //   "userName" : userNameTextEditingController.text,
+      //   "userEmail" : emailTextEditingController.text,
+      // };
       HelperFunctions.saveUserEmailSharedPrefrence
         (emailTextEditingController.text);
       HelperFunctions.saveUserNameSharedPreference
         (userNameTextEditingController.text);
 
 
-      databaseMethods.addUserInfo(userDataMap);
+      //databaseMethods.addUserInfo(userDataMap);
 
       setState(() {
           isLoading = true;
