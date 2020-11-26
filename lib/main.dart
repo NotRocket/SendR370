@@ -45,11 +45,7 @@ class _MyAppState extends State<MyApp> {
       child:MaterialApp(
 
           title: 'Flutter Demo',
-          theme: ThemeData(
-            scaffoldBackgroundColor: Colors.blue,
-            primarySwatch: Colors.brown,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
+          theme: ThemeData.dark(),
           home:  userIsLoggedIn ? Home() :
           SignIn(),
       )

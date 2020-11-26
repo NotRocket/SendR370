@@ -63,4 +63,9 @@ class DatabaseMethods {
         .where("users", arrayContains: userName)
         .snapshots();
   }
+  
+  addPostToFeed(messageMap){
+    FirebaseFirestore.instance.collection("FeedPosts").add(messageMap);
+  }
+
 }

@@ -55,7 +55,6 @@ class _ProfileViewState extends State<ProfileView> {
             Container(
               padding: const EdgeInsets.all(8.0),
               child: Text("Display name: ${snapshot.data["Display name"]}",style: simpleTextStyle(),),
-              color: Colors.blueGrey,
             ),
             Divider(
               thickness: 2,
@@ -63,8 +62,7 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
-
-              child: Text("Birthday: ${snapshot.data["username"]}",style:
+              child: Text("Username: ${snapshot.data["username"]}",style:
               simpleTextStyle(),),
             ),
             Divider(
@@ -81,7 +79,7 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Phone Number: ${snapshot.data["email"]}",style:
+              child: Text("Email: ${snapshot.data["email"]}",style:
               simpleTextStyle(),),
             ),
             Divider(
