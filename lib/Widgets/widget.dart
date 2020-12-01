@@ -2,8 +2,18 @@ import 'package:flutter/material.dart';
 
 Widget appBarMain(BuildContext context) {
   return AppBar(
-    title: Image.asset('assets/images/SendR.png', height: 0, width: 200,
-        fit: BoxFit.fitHeight),
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          "SendR",
+          style: TextStyle(
+              fontSize: 22
+          ),
+        ),
+        Text(" ", style: TextStyle(fontSize: 22, color: Colors.blue),)
+      ],
+    ),
   );
 }
 

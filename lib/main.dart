@@ -43,8 +43,6 @@ class _MyAppState extends State<MyApp> {
     return Provider<AuthMethods>(
       create:(context)=> AuthMethods(),
       child:MaterialApp(
-
-          title: 'Flutter Demo',
           theme: ThemeData.dark(),
           home:  userIsLoggedIn ? Home() :
           SignIn(),
@@ -52,33 +50,5 @@ class _MyAppState extends State<MyApp> {
       );
   }
 }
-// class IamBlank extends StatefulWidget {
-//   @override
-//   _IamBlankState createState() => _IamBlankState();
-// }
-// class _IamBlankState extends State<IamBlank> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
 
-/*
-
-class HomeController extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //final AuthMethods auth = Provider.of(context).auth;
-    return StreamBuilder(
-      stream: auth.authStateChanges,
-      builder: (context, AsyncSnapshot<String> snapshot){
-        if(snapshot.connectionState == ConnectionState.active){
-          final bool signedIn = true;
-          return  Home();
-        }
-        return CircularProgressIndicator();
-      },
-    );
-  }
-}*/
 

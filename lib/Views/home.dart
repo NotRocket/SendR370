@@ -27,11 +27,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('assets/images/SendR.png', height: 50, width:
-        200,
-            fit: BoxFit.fitHeight),
-        elevation: 0.0,
-        centerTitle: false,
         actions: [
           GestureDetector(
             onTap: () {

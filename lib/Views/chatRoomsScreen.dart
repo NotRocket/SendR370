@@ -55,11 +55,18 @@ class _ChatRoomState extends State<ChatRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset("assets/images/search.png",
-          height: 0, ),
-        actions: [
-
-        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "SendR",
+              style: TextStyle(
+                  fontSize: 22
+              ),
+            ),
+            Text("Messages", style: TextStyle(fontSize: 22, color: Colors.blue),)
+          ],
+        ),
       ),
       body: chatRoomList(),
       floatingActionButton: FloatingActionButton(

@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:first/Views/singup.dart';
 import 'package:first/Widgets/widget.dart';
-import 'package:flutter/material.dart';
 import 'package:first/services/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:first/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../Widgets/widget.dart';
 import '../Widgets/widget.dart';
 import 'home.dart';
 
